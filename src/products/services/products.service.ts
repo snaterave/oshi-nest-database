@@ -25,10 +25,11 @@ export class ProductsService {
 
       return this.productModel
                   .find(filters)
+                  .populate('brand')
                   .skip(offset*limit)
                   .limit(limit);
     }
-    return this.productModel.find().exec();
+    return this.productModel.find().populate('brand').exec();
   }
 
   async findOne(id: string) {
